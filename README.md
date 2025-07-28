@@ -10,15 +10,6 @@ Key Features
 - **Contextual Structure Modeling**: Employs convolution and Transformer layers for semantic aggregation and structure-sensitive reasoning.
 - **Support for Dual-task Extension**: Can be extended to support auxiliary sentiment supervision.
 
-Project Structure
-
-── model/                         Model definitions (PSEFNet, PSEModule, etc.)
-── fast/                          Preprocessing and training utilities
-── Mooc_dataset_prepared.csv     Input dataset
-── PSEFNet.py                        Main training and evaluation script
-── Readme.MD Project documentation
-
-
 Environment Requirements
 - Python >= 3.8
 - PyTorch >= 1.10
