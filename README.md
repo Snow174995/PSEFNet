@@ -12,11 +12,11 @@ Key Features
 
 Project Structure
 
-├── model/                         Model definitions (PSEFNet, PSEModule, etc.)
-├── fast/                          Preprocessing and training utilities
-├── Mooc_dataset_prepared.csv     Input dataset
-├── main.py                        Main training and evaluation script
-├── Readme.md Project documentation
+── model/                         Model definitions (PSEFNet, PSEModule, etc.)
+── fast/                          Preprocessing and training utilities
+── Mooc_dataset_prepared.csv     Input dataset
+── PSEFNet.py                        Main training and evaluation script
+── Readme.MD Project documentation
 
 
 Environment Requirements
@@ -30,7 +30,7 @@ Install dependencies via pip:
 "bash pip install torch pandas numpy matplotlib"
 
 Dataset Preparation
-The input CSV file "Mooc_dataset_prepared.csv" should include the following fields:
+The input CSV files "Mooc_dataset.csv" and "Netease_dataset.csv" should include the following fields:
 comment_text: Textual comment from student
 grade_score: Normalized test score (target label)
 sentiment_label: Sentiment polarity label (-1, 0, 1)
@@ -63,6 +63,3 @@ Key Hyperparameters in "PSEF-Net":
 
 Visualization
 The system outputs evaluation metrics and plots predicted vs actual scores for analysis. Predicted results are also saved to CSV for further inspection.
-
-Acknowledgments
-This project builds upon the open-source framework [pyFAST](https://github.com/yongxin99/pyFAST) for multivariate time series modeling and includes customized extensions for sentiment-aware educational analysis.
