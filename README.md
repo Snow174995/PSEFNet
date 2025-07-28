@@ -47,7 +47,6 @@ To train and evaluate the model, run:
 
 
 Key Hyperparameters in "PSEF-Net":
-
 -input_window_size: Input sequence length (default 12)
 - output_window_size: Prediction horizon (default 12)
 - hidden_dim: Hidden layer dimension (default 128)
