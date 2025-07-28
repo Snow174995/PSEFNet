@@ -25,7 +25,7 @@ def main():
 
 
     mts_dir = r'D:/workspace/pyFAST-new/pyFAST/'
-    excel_file1 = mts_dir + r'Mooc_dataset_prepared.csv'
+    excel_file1 = mts_dir + r'Mooc_dataset.csv'
 
 
     target_df = pd.read_excel(excel_file1)
