@@ -24,19 +24,19 @@ class PSEFNet(nn.Module):
         self.context_module = StructureContextFusion(self.hidden_dim)
 
         self.pooling = nn.AdaptiveAvgPool1d(1)
-        self.predictor = nn.Linear(self.hidden_dim, 1)  # 可拓展为双任务预测
+        self.predictor = nn.Linear(self.hidden_dim, 1)  
 
     def forward(self, x_embed, structure_vec):
         """
-        :param x_embed: 评论嵌入 (B, L, D)
-        :param structure_vec: 结构向量 (B, D)
-        :return: 预测成绩 (B, 1)
+        : param x_embed: Comment Embedding (B, L, D)
+        : param structure_vec: Structural Vector (B, D)
+        : return: Score Prediction (B, 1)
         """
-        x = self.pse_module(x_embed)  # 情感增强
-        x = self.fusion_module(x, x_embed)  # 融合结构信息（默认使用原x_embed模拟结构）
-        x = self.context_module(x, structure_vec)  # 上下文结构建模
+        x = self.pse_module(x_embed)  # Sentiment Enhancement
+        x = self.fusion_module(x, x_embed)  # Structural Information Fusion
+        x = self.context_module(x, structure_vec)  # Contextual Structure Modeling
         x_pool = self.pooling(x.transpose(1, 2)).squeeze(-1)  # (B, D)
-        score_pred = self.predictor(x_pool)  # 预测成绩
+        score_pred = self.predictor(x_pool)  # Score Prediction
         return score_pred
 
 class PSEModule(nn.Module):
@@ -52,7 +52,7 @@ class PSEModule(nn.Module):
         x_aug = torch.cat([x, pos_embed], dim=-1)  # (B, L, D+P)
         h = torch.tanh(self.sentiment_attention(x_aug))  # (B, L, H)
         attn = torch.softmax(self.score(h), dim=1)  # (B, L, 1)
-        x_out = x * attn  # 位置-情感引导加权
+        x_out = x * attn  # Position-Sentiment Guided Weighting
         return x_out
 
 class EmotionStructureFusion(nn.Module):
@@ -64,7 +64,7 @@ class EmotionStructureFusion(nn.Module):
         self.out_proj = nn.Linear(dim, dim)
 
     def forward(self, x, structure_embed):
-        # x: (B, L, D) 表示评论特征；structure_embed: (B, L, D) 课程结构嵌入
+        # x: (B, L, D) Comment Feature Representation；structure_embed: (B, L, D) 
         Q = self.query_proj(x)
         K = self.key_proj(structure_embed)
         V = self.value_proj(structure_embed)
@@ -72,7 +72,7 @@ class EmotionStructureFusion(nn.Module):
         scores = torch.matmul(Q, K.transpose(-1, -2)) / (Q.size(-1)**0.5)
         weights = torch.softmax(scores, dim=-1)
         fusion = torch.matmul(weights, V)
-        return self.out_proj(fusion + x)  # 残差融合
+        return self.out_proj(fusion + x)  # Residual Fusion
 
 
 class StructureContextFusion(nn.Module):
