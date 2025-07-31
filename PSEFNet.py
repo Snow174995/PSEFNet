@@ -119,19 +119,19 @@ def main():
         # df2.to_csv('D:/workspace/pyFAST-new/pyFAST/traffic_data/data/PEMSD8/P_column.csv', index=False)
         #
         # # time_steps = pd.date_range("2016-8-02 09:00", periods=2016, freq="5min")
-        # # 绘制真实值和预测值的曲线图
+
         # plt.figure(figsize=(10, 6))
         # plt.plot(range(len(T)), T, label='True Values', color='blue', linestyle='-', linewidth=1)
         # plt.plot(range(len(T)), P, label='Predicted Values', color='red', linestyle='-', linewidth=1)
         #
-        # # 添加标题和标签
+
         # # plt.title(f'True vs Predicted Values for Node {10}')
         # plt.xlabel('Time Step (5-minute interval)', fontsize=14)
         # plt.ylabel('Traffic Flow (vehicles / 5 min)', fontsize=14)
         # plt.legend(fontsize=12, loc='upper center', bbox_to_anchor=(0.5, 1.10), ncol=3, frameon=False)
         #
         #
-        # # 显示图形
+
         # plt.grid(True)
         # plt.show()
 
